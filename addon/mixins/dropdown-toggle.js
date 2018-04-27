@@ -1,7 +1,5 @@
 import Ember from 'ember';
 
-const { run: { next } } = Ember;
-
 /**
  * Mixin for components that act as dropdown toggles.
  *
@@ -11,6 +9,8 @@ const { run: { next } } = Ember;
  */
 export default Ember.Mixin.create({
   classNames: ['dropdown-toggle'],
+
+  isToggleButton: true,
 
   /**
    * @property ariaRole
@@ -29,15 +29,13 @@ export default Ember.Mixin.create({
    */
   dropdown: null,
 
-  didReceiveAttrs() {
-    this._super(...arguments);
+  setDropdown() {
     let dropdown = this.get('dropdown');
     if (dropdown) {
-      next(this, function() {
-        if (!this.get('isDestroyed')) {
-          dropdown.set('toggle', this);
-        }
-      });
+      if (!this.get('isDestroyed') && !dropdown.get('toggle')) {
+        dropdown.set('toggle', this);
+      }
     }
   }
+
 });

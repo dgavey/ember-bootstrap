@@ -270,6 +270,9 @@ export default Ember.Component.extend(TypeClass, SizeClass, {
       }
       );
     }
+    if (this.get('isToggleButton')) {
+      this.setDropdown();
+    }
   },
 
   init() {

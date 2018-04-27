@@ -54,6 +54,7 @@ export default Ember.Component.extend(DropdownToggle, {
   onClick() {},
 
   click(e) {
+    this.setDropdown();
     e.preventDefault();
     this.get('onClick')();
   }
